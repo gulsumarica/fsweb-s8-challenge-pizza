@@ -4,23 +4,29 @@ import styled from "styled-components";
 
 const Container = styled.div`
   background: url("../Assets/Iteration-1-assets/home-banner.png") no-repeat
-    center/cover;
-  width: 100vw;
+    center;
+  background-size: cover;
+  width: 100%;
   height: 100vh;
-  position: relative;
-`;
-const Content = styled.div`
+  margin: 0;
+  padding: 0;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: baseline;
+  box-sizing: border-box;
+`;
+const Content = styled.div`
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 const H1 = styled.h1`
   color: white;
   font-size: 3rem;
-  width: 25%;
+  width: 60%;
   font-family: Roboto Condensed, sans-serif;
   font-weight: 200;
 `;

@@ -3,23 +3,14 @@ import { Route, Switch } from "react-router-dom/cjs/react-router-dom.min";
 import Home from "./pages/Home";
 import OrderPizza from "./pages/OrderPizza";
 import Success from "./pages/Success";
-import styled from "styled-components";
-
-const Container = styled.div`
-  color: white;
-  background-color: #ce2829;
-  height: 10rem;
-  width: 100vw;
-  font-size: 3rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+import Header from "./components/Header";
+import GlobalStyle from "./components/GlobalStyle";
 
 function App() {
   return (
     <>
-      <Container>Teknolojik Yemekler</Container>
+      <GlobalStyle />
+      <Header />
       <Switch>
         <Route exact path="/">
           <Home />
