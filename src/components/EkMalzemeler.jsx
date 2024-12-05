@@ -1,11 +1,36 @@
 import React, { useEffect, useState } from "react";
-import { FormGroup, Input, Label } from "reactstrap";
+import { FormFeedback, FormGroup, Input, Label } from "reactstrap";
 import styled from "styled-components";
 
-function EkMalzemeler({ malzemeler = [], onMalzemeSecildi = () => {} }) {
-  // malzemeler props'ına default boş dizi ekliyoruz
+const MalzemelerGrup = styled.div`
+  width: 90%;
+  max-width: 500px;
+  margin: 2rem;
+`;
+
+const MalzemeList = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 0.8rem;
+`;
+
+const FormGroupWrapper = styled(FormGroup)`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const MalzemeBaslik = styled.div`
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 1rem 0;
+  padding: 0 0.5;
+`;
+
+function EkMalzemeler({ malzemeler = [], onSelectedMalzemeCount = () => {} }) {
   const [selectedItems, setSelectedItems] = useState([]);
-  const [errorMessage, setErrorMesage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   function handleCheckbox(item) {
     if (selectedItems.includes(item)) {
@@ -13,47 +38,15 @@ function EkMalzemeler({ malzemeler = [], onMalzemeSecildi = () => {} }) {
     } else {
       if (selectedItems.length < 10) {
         setSelectedItems([...selectedItems, item]);
+        setErrorMessage("");
       } else {
-        setErrorMesage("En fazla 10 malzeme seçebilirsiniz.");
+        setErrorMessage("En fazla 10 malzeme seçebilirsiniz.");
       }
     }
   }
   useEffect(() => {
-    let value = 5 * selectedItems.length;
-    onMalzemeSecildi(value);
-  }, [selectedItems, onMalzemeSecildi]);
-
-  const MalzemelerGrup = styled.div`
-    width: 90%;
-    max-width: 500px;
-    margin: 2rem;
-  `;
-
-  const MalzemeList = styled.div`
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-  `;
-
-  const FormGroupWrapper = styled(FormGroup)`
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  `;
-
-  const ErrorMessage = styled.div`
-    color: red;
-    font-size: 0.9rem;
-    margin: 0.5rem;
-    text-align: left;
-  `;
-  const MalzemeBaslik = styled.div`
-    display: flex;
-    flex-direction: column;
-    text-align: left;
-    margin: 1rem 0;
-    padding: 0 0.5;
-  `;
+    onSelectedMalzemeCount(selectedItems.length);
+  }, [selectedItems, onSelectedMalzemeCount]);
 
   return (
     <MalzemelerGrup>
@@ -63,7 +56,9 @@ function EkMalzemeler({ malzemeler = [], onMalzemeSecildi = () => {} }) {
           En fazla 10 malzeme seçebilirsiniz. 5₺
         </p>
       </MalzemeBaslik>
-      {errorMessage && <ErrorMessage>{errorMessage}</ErrorMessage>}
+      {errorMessage && (
+        <FormFeedback style={{ color: "red" }}>{errorMessage}</FormFeedback>
+      )}
       <MalzemeList>
         {malzemeler.map((malzeme, index) => (
           <FormGroupWrapper key={index}>

@@ -12,7 +12,7 @@ function IsimFormu() {
     setIsim(girilenDeger);
 
     if (girilenDeger.trim().length < 3) {
-      setHataMesaji("*Girilen isim en az 3 karakter olmalıdır.");
+      setHataMesaji("Girilen isim en az 3 karakter olmalıdır.");
     } else {
       setHataMesaji("");
     }

@@ -13,14 +13,8 @@ function PizzaBoyut({ pizzaBoyutHamur }) {
 
   function handleHamurChange(event) {
     const selectedHamur = event.target.value;
-    if (
-      selectedHamur === "İnce" ||
-      selectedHamur === "Orta" ||
-      selectedHamur === "Kalın"
-    ) {
-      setHamur(selectedHamur);
-      pizzaBoyutHamur({ boyut, hamur: event.target.value });
-    }
+    setHamur(selectedHamur);
+    pizzaBoyutHamur({ boyut, hamur: event.target.value });
   }
 
   const PizzaBoyut = styled.div`

@@ -44,33 +44,34 @@ const ButtonStyle = styled.button`
   }
 `;
 
-export default function SiparisCard({ malzemeler }) {
-  const [toplamMalzemeFiyat, setToplamMalzemeFiyat] = useState(0);
+export default function SiparisCard({ onSelectedMalzemeCount }) {
+  const [selectedMalzemeCount, setSelectedMalzemeCount] = useState("");
 
-  const handleMalzemeSecildi = (value) => {
-    setToplamMalzemeFiyat(value);
+  const handleMalzemeSecildi = (count) => {
+    setSelectedMalzemeCount(count);
   };
   return (
-    <SiparisStyle>
-      <StyledCard>
-        <CardBody>
-          <CardTitle tag="h5" style={{ textAlign: "left" }}>
-            Sipariş Toplam
-          </CardTitle>
-          <Secimler>
-            <CardText>Seçimler</CardText>
-            <EkMalzemeler
-              malzemeler={malzemeler}
-              onMalzemeSecildi={handleMalzemeSecildi}
-            />
-          </Secimler>
-          <ToplamFiyat>
-            <CardText>Toplam</CardText>
-            <CardText>10</CardText>
-          </ToplamFiyat>
-        </CardBody>
-      </StyledCard>
-      <ButtonStyle aria-label="Sipariş Ver">SİPARİŞ VER</ButtonStyle>
-    </SiparisStyle>
+    <>
+      <SiparisStyle>
+        <StyledCard>
+          <CardBody>
+            <CardTitle tag="h5" style={{ textAlign: "left" }}>
+              Sipariş Toplam
+            </CardTitle>
+            <Secimler>
+              <CardText>Seçimler {handleMalzemeSecildi}</CardText>
+              <CardText>{selectedMalzemeCount * 5}₺</CardText>
+            </Secimler>
+            <ToplamFiyat>
+              <CardText>Toplam</CardText>
+              <CardText>10</CardText>
+            </ToplamFiyat>
+          </CardBody>
+        </StyledCard>
+        <ButtonStyle aria-label="Sipariş Ver">SİPARİŞ VER</ButtonStyle>
+      </SiparisStyle>
+
+      <EkMalzemeler onSelectedMalzemeCount={handleMalzemeSecildi} />
+    </>
   );
 }

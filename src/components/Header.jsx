@@ -25,12 +25,11 @@ const Yonerge = styled.div`
 `;
 
 function Header({ location }) {
-  console.log(location.pathname);
   return (
     <HeaderStyle>
       Teknolojik Yemekler
       {location.pathname === "/OrderPizza" && (
-        <Yonerge>Anasayfa - Seçenekler -Sipariş Oluştur</Yonerge>
+        <Yonerge>Anasayfa - Seçenekler - Sipariş Oluştur</Yonerge>
       )}
     </HeaderStyle>
   );
